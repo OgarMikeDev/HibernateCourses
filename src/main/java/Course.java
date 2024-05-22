@@ -1,7 +1,7 @@
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Courses")
+@Table(name = "courses")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -9,10 +9,9 @@ public class Course {
     private String name;
     private int duration;
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", columnDefinition = "enum")
-    private CourseType courseType;
+    @Column(columnDefinition = "enum")
+    private CourseType type;
     private String description;
-
     @Column(name = "teacher_id")
     private int teacherId;
     @Column(name = "students_count")
@@ -20,7 +19,6 @@ public class Course {
     private int price;
     @Column(name = "price_per_hour")
     private float pricePerHour;
-
 
     public int getId() {
         return id;
@@ -46,12 +44,12 @@ public class Course {
         this.duration = duration;
     }
 
-    public CourseType getCourseType() {
-        return courseType;
+    public CourseType getType() {
+        return type;
     }
 
-    public void setCourseType(CourseType courseType) {
-        this.courseType = courseType;
+    public void setType(CourseType type) {
+        this.type = type;
     }
 
     public String getDescription() {
@@ -100,7 +98,7 @@ public class Course {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", duration=" + duration +
-                ", courseType=" + courseType +
+                ", type=" + type +
                 ", description='" + description + '\'' +
                 ", teacherId=" + teacherId +
                 ", studentsCount=" + studentsCount +
