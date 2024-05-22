@@ -13,7 +13,7 @@ public class Main {
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 
         Session session = sessionFactory.openSession();
-        Course course = (Course) session.get(Course.class, 46);
+        Course course = (Course) session.get(Course.class, 1);
         System.out.println(course.getName());
 
         sessionFactory.close();
