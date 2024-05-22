@@ -27,6 +27,7 @@ public class Main {
         course.setName("SQL for developers and designers");
         session.save(newCourse);
         session.save(course);
+        session.delete(newCourse);
 
         transaction.commit();
         sessionFactory.close();
