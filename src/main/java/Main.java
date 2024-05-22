@@ -15,6 +15,20 @@ public class Main {
         Course course = session.get(Course.class, 1);
         System.out.println("Name course: " + course.getName());
 
+        Transaction transaction = session.beginTransaction();
+        Course newCourse = new Course();
+        newCourse.setName("New Course \"super java\"");
+        newCourse.setCourseType(CourseType.BUSINESS);
+        newCourse.setTeacherId(1);
+
+        newCourse = session.get(Course.class, 48);
+        newCourse.setName("New Course \"super java and MySQL from Ogar\"");
+
+        course.setName("SQL for developers and designers");
+        session.save(newCourse);
+        session.save(course);
+
+        transaction.commit();
         sessionFactory.close();
     }
 }
