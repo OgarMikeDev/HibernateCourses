@@ -20,7 +20,7 @@ public class Main {
         Transaction transaction = session.beginTransaction();
 
         //update course
-        Course course = session.get(Course.class,1);
+        Course course = session.get(Course.class,45);
 //        course.setName("Full-stack developer 0-PRO");
 //        course.setType(CourseType.BUSINESS);
         int countStudents = course.getStudents().size();
