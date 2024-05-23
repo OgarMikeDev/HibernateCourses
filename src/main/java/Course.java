@@ -12,8 +12,10 @@ public class Course {
     @Column(columnDefinition = "enum")
     private CourseType type;
     private String description;
-    @Column(name = "teacher_id")
-    private int teacherId;
+//    @Column(name = "teacher_id")
+//    private int teacherId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Teacher teacher;
     @Column(name = "students_count")
     private int studentsCount;
     private int price;
@@ -60,12 +62,12 @@ public class Course {
         this.description = description;
     }
 
-    public int getTeacherId() {
-        return teacherId;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public int getStudentsCount() {
@@ -100,7 +102,7 @@ public class Course {
                 ", duration=" + duration +
                 ", type=" + type +
                 ", description='" + description + '\'' +
-                ", teacherId=" + teacherId +
+                ", teacherId=" + teacher +
                 ", studentsCount=" + studentsCount +
                 ", price=" + price +
                 ", pricePerHour=" + pricePerHour +

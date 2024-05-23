@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure("hibernate.cfg.xml").build();
         Metadata metadata = new MetadataSources(registry)
@@ -18,11 +18,10 @@ public class Main {
         Transaction transaction = session.beginTransaction();
 
         //update course
-        Course course = session.get(Course.class,1);
+        Course course = session.get(Course.class,2);
         course.setName("Full-stack developer 0-PRO");
         course.setType(CourseType.BUSINESS);
-        course.setTeacherId(1);
-        System.out.println("Course: " + course);
+        System.out.println("Course: " + course + "\nTeacher: " + course.getTeacher());
 
         //create new course
         Course newCourse = new Course();
@@ -30,7 +29,7 @@ public class Main {
         newCourse.setDuration(10);
         newCourse.setType(CourseType.PROGRAMMING);
         newCourse.setDescription("new course java from Ogar!");
-        newCourse.setTeacherId(1);
+        newCourse.setTeacher(course.getTeacher());
 
         session.save(course);
         session.save(newCourse);
