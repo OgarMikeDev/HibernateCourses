@@ -1,5 +1,7 @@
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "courses")
 public class Course {
@@ -21,6 +23,12 @@ public class Course {
     private int price;
     @Column(name = "price_per_hour")
     private float pricePerHour;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "subscriptions",
+                joinColumns = {@JoinColumn(name = "student_id")},
+                inverseJoinColumns = {@JoinColumn(name = "course_id")})
+    private List<Student> students;
 
     public int getId() {
         return id;
@@ -92,6 +100,14 @@ public class Course {
 
     public void setPricePerHour(float pricePerHour) {
         this.pricePerHour = pricePerHour;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     @Override

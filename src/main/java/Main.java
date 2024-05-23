@@ -6,6 +6,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -18,10 +20,15 @@ public class Main {
         Transaction transaction = session.beginTransaction();
 
         //update course
-        Course course = session.get(Course.class,2);
-        course.setName("Full-stack developer 0-PRO");
-        course.setType(CourseType.BUSINESS);
-        System.out.println("Course: " + course + "\nTeacher: " + course.getTeacher());
+        Course course = session.get(Course.class,1);
+//        course.setName("Full-stack developer 0-PRO");
+//        course.setType(CourseType.BUSINESS);
+        int countStudents = course.getStudents().size();
+        System.out.println("Course: " + course +
+                "\nTeacher: " + course.getTeacher() +
+                "\nCount students: " + countStudents);
+        List<Student> studentsList = course.getStudents();
+        studentsList.forEach(System.out::println);
 
         //create new course
         Course newCourse = new Course();
