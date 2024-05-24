@@ -49,7 +49,8 @@ public class Main {
         courseCriteriaQuery.select(root).where(criteriaBuilder.greaterThanOrEqualTo(root.<Integer>get("price"), 100000))
                 .orderBy(criteriaBuilder.desc(root.get("price")));
 //        courseCriteriaQuery.select(root).where(criteriaBuilder.lessThanOrEqualTo(root.<Integer>get("price"), 100000));
-        List<Course> courses = session.createQuery(courseCriteriaQuery).getResultList();
+//        List<Course> courses = session.createQuery(courseCriteriaQuery).getResultList();
+        List<Course> courses = session.createQuery(courseCriteriaQuery).setMaxResults(5).getResultList();
 
         courses.forEach(elem -> System.out.println(elem.getName() + " - " + elem.getPrice()));
 
