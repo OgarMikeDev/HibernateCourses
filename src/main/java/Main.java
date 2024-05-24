@@ -1,3 +1,6 @@
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,7 +31,7 @@ public class Main {
                 "\nTeacher: " + course.getTeacher() +
                 "\nCount students: " + countStudents);
         List<Student> studentsList = course.getStudents();
-        studentsList.forEach(System.out::println);
+        //studentsList.forEach(System.out::println);
 
         //create new course
         Course newCourse = new Course();
@@ -37,6 +40,13 @@ public class Main {
         newCourse.setType(CourseType.PROGRAMMING);
         newCourse.setDescription("new course java from Ogar!");
         newCourse.setTeacher(course.getTeacher());
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Course> courseCriteriaQuery = criteriaBuilder.createQuery(Course.class);
+        Root<Course> root = courseCriteriaQuery.from(Course.class);
+        List<Course> courses = session.createQuery(courseCriteriaQuery).getResultList();
+
+        courses.forEach(elem -> System.out.println(elem.getName()));
 
         session.save(course);
         session.save(newCourse);

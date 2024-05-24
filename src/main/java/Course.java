@@ -18,8 +18,8 @@ public class Course {
 //    private int teacherId;
     @ManyToOne(cascade = CascadeType.ALL)
     private Teacher teacher;
-    @Column(name = "students_count")
-    private int studentsCount;
+    @Column(name = "students_count", nullable = true)
+    private Integer studentsCount;
     private int price;
     @Column(name = "price_per_hour")
     private float pricePerHour;
