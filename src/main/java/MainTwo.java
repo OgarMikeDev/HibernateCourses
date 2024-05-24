@@ -21,8 +21,9 @@ public class MainTwo {
 
         Session session = sessionFactory.openSession();
 
-        String hql = "From " + Course.class.getName() + " WHERE price >= 100000";
-        List<Course> courses = session.createQuery(hql).setMaxResults(5).getResultList();
+        String hql = "From " + Course.class.getName() + " WHERE price >= 100000 ORDER BY price desc LIMIT 5";
+//        List<Course> courses = session.createQuery(hql).setMaxResults(5).getResultList();
+        List<Course> courses = session.createQuery(hql).getResultList();
         courses.forEach(elem -> System.out.println(elem.getPrice()));
 
         sessionFactory.close();
