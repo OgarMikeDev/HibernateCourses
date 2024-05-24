@@ -16,7 +16,7 @@ public class Course {
     private String description;
 //    @Column(name = "teacher_id")
 //    private int teacherId;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Teacher teacher;
     @Column(name = "students_count", nullable = true)
     private Integer studentsCount;

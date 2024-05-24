@@ -46,7 +46,7 @@ public class Main {
         Root<Course> root = courseCriteriaQuery.from(Course.class);
         List<Course> courses = session.createQuery(courseCriteriaQuery).getResultList();
 
-        courses.forEach(elem -> System.out.println(elem.getName()));
+        courses.forEach(elem -> System.out.println(elem.getName() + " - " + elem.getTeacher()));
 
         session.save(course);
         session.save(newCourse);
