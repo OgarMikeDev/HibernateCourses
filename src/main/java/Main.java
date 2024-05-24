@@ -44,9 +44,10 @@ public class Main {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Course> courseCriteriaQuery = criteriaBuilder.createQuery(Course.class);
         Root<Course> root = courseCriteriaQuery.from(Course.class);
+        courseCriteriaQuery.select(root).where(criteriaBuilder.greaterThan(root.<Integer>get("price"), 100000));
         List<Course> courses = session.createQuery(courseCriteriaQuery).getResultList();
 
-        courses.forEach(elem -> System.out.println(elem.getName() + " - " + elem.getTeacher()));
+        courses.forEach(elem -> System.out.println(elem.getName() + " - " + elem.getPrice()));
 
         session.save(course);
         session.save(newCourse);
