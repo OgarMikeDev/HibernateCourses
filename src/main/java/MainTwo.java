@@ -30,10 +30,9 @@ public class MainTwo {
 //                "FROM " + Subscription.class.getName() + ") as count, " +
 //                "course_id FROM " + Subscription.class.getName() + " GROUP BY course_id";
 
-        String hql = "SELECT s.courseId, COUNT(*) AS totalSubscriptions\n" +
+        String hql = "SELECT s.courseId, COUNT(*) " +
                 "FROM Subscription s\n" +
-                "GROUP BY s.courseId\n" +
-                "ORDER BY totalSubscriptions DESC";
+                "GROUP BY s.courseId\n";
 
         Query query = session.createQuery(hql, Subscription[].class);
         List<String[]> resultList = query.getResultList();
