@@ -12,7 +12,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.List;
 
-
 public class MainTwo {
     public static void main(String[] args) {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -32,8 +31,7 @@ public class MainTwo {
 //                "course_id FROM " + Subscription.class.getName() + " GROUP BY course_id";
 
         String hql = "SELECT s.courseId, COUNT(*) " +
-                "FROM Subscription s\n" +
-                "GROUP BY s.courseId\n";
+                "FROM Subscription s GROUP BY s.courseId";
 
         Query query = session.createQuery(hql, Subscription[].class);
         List<String[]> resultList = query.getResultList();
